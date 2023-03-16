@@ -4,7 +4,7 @@ package org.com.models;
 import lombok.Data;
 
 @Data
-public class EmailsResponse {
+public class EmailsPostResponse {
     private int id;
     private int sender;
     private String recipient;

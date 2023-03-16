@@ -6,7 +6,7 @@ import java.util.ArrayList;
 @Data
 public class EmailsGetResponse {
     private int count;
-    private Object next;
-    private Object previous;
-    private ArrayList<Object> results;
+    private String next;
+    private String previous;
+    private ArrayList<String> results;
 }

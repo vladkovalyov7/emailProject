@@ -13,7 +13,7 @@ public class SignInClient extends BaseClient {
         Response response =  prepareRequest()
                 .body(credential)
                 .when()
-                .post(baseUrl+"/Auth");
+                .post(baseUrl+"/auth");
         SingInResponse singInResponse = response.as(SingInResponse.class);
         return singInResponse;
     }
