@@ -19,7 +19,7 @@ public class EmailTest {
         SignInClient clientSI = new SignInClient();
         SingInRequest credential = new SingInRequest("vladkovalyov67", "2Cs5Z2j7");
         SingInResponse responseSI = clientSI.post(credential);
-        client = new EmailsClient(responseSI.getToken());
+        client = new EmailsClient(responseSI. getToken());
     }
 
     @Test
@@ -47,14 +47,10 @@ public class EmailTest {
 
     @Test
     public void getEmailId() {
-        EmailsClient clientSI = new EmailsClient();
-        EmailsPostRequest credentialUser = new EmailsPostRequest(1, "vladkovalyov67@example.com", "string", "string");
-        EmailsPostResponse responseUserSI = clientSI.emailPost(credentialUser);
-        client = new  EmailsClient(responseUserSI.getSender());
-        Response responseUser = client.getEmail(380);
-        Assert.assertEquals(responseUser.getStatusCode(), 200);
+        EmailsClient client = new EmailsClient();
+        EmailsGetResponse response = client.getEmail();
+        Assert.assertEquals(response.getCount(), 216);
     }
-
 
     @Test
     public void SuccessCreateAndDeleteChallenge() {
@@ -82,6 +78,20 @@ public class EmailTest {
     }
 
 
+    @Test
+    public void postUserV(){
+        EmailsClient client = new EmailsClient();
+        UserPostRequest credential = new  UserPostRequest("vladqwertyjhjhq","usdsdsduysdser@example.com", "2Cs5Z2j7");
+        UserPostResponse response = client.userPost(credential);
+        Assert.assertEquals(response.getUsername(), "vladqwertyjhjhq");
+    }
 
+
+    @Test
+    public void getUser() {
+        EmailsClient client = new EmailsClient();
+        UserGetResponse response = client.getUser();
+        Assert.assertEquals(response.getId(), 216);
+    }
 
 }

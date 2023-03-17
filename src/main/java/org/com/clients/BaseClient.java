@@ -9,7 +9,7 @@ public class BaseClient {
     public final ContentType contentType;
 
     public BaseClient() {
-        this.baseUrl = "http://68.183.74.14:4005";
+        this.baseUrl = "http://68.183.74.14:4005/";
         this.contentType = ContentType.JSON;
     }
 

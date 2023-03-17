@@ -1,10 +1,7 @@
 package org.com.clients;
 
 import io.restassured.response.Response;
-import org.com.models.EmailsPostRequest;
-import org.com.models.EmailsPostResponse;
-import org.com.models.UserPostRequest;
-import org.com.models.UserPostResponse;
+import org.com.models.*;
 
 import static java.lang.String.format;
 
@@ -24,7 +21,6 @@ public class EmailsClient extends BaseClient {
 
     public EmailsPostResponse emailPost(EmailsPostRequest request){
         return prepareRequest()
-                .headers("Authorization", "Bearer " + token)
                 .body(request)
                 .when()
                 .post(baseUrl+"/api/emails")
@@ -34,36 +30,41 @@ public class EmailsClient extends BaseClient {
 
     public Response getListEmails(String results){
         return prepareRequest()
-                .header("Authorization", "Bearer " + token)
                 .when()
-                .get("/api/emails" +results);
+                .get(baseUrl+"/api/emails/" +results);
     }
 
 
-    public Response getEmail(int id){
+    public EmailsGetResponse getEmail(){
         return prepareRequest()
-                .header("Authorization", "Bearer " + token)
                 .when()
-                .get("/api/emails" +id);
+                .get(baseUrl+"/api/emails/")
+                .as(EmailsGetResponse.class);
+
     }
 
     public Response delete(int id) {
         return prepareRequest()
                 .header("Authorization", "Bearer " + token)
                 .when()
-                .delete("/api/challenge/" +id );
+                .delete(baseUrl+"/api/emails/" +id );
     }
+
 
     public UserPostResponse userPost(UserPostRequest request){
         return prepareRequest()
-                .headers("Authorization", "Bearer " + token)
                 .body(request)
                 .when()
-                .post(baseUrl+"/api/users")
+                .post(baseUrl +"api/users/")
                 .as(UserPostResponse.class);
     }
 
-
+    public UserGetResponse getUser(){
+        return prepareRequest()
+                .when()
+                .get(baseUrl +"api/users/current/")
+                .as(UserGetResponse.class);
+    }
 
 
 }
